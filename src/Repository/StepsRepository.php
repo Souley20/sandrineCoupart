@@ -2,27 +2,27 @@
 
 namespace App\Repository;
 
-use App\Entity\RecipePicture;
+use App\Entity\Steps;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
- * @extends ServiceEntityRepository<RecipePicture>
+ * @extends ServiceEntityRepository<Steps>
  *
- * @method RecipePicture|null find($id, $lockMode = null, $lockVersion = null)
- * @method RecipePicture|null findOneBy(array $criteria, array $orderBy = null)
- * @method RecipePicture[]    findAll()
- * @method RecipePicture[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
+ * @method Steps|null find($id, $lockMode = null, $lockVersion = null)
+ * @method Steps|null findOneBy(array $criteria, array $orderBy = null)
+ * @method Steps[]    findAll()
+ * @method Steps[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class RecipePictureRepository extends ServiceEntityRepository
+class StepsRepository extends ServiceEntityRepository
 {
     public function __construct(ManagerRegistry $registry)
     {
-        parent::__construct($registry, RecipePicture::class);
+        parent::__construct($registry, Steps::class);
     }
 
 //    /**
-//     * @return RecipePicture[] Returns an array of RecipePicture objects
+//     * @return Steps[] Returns an array of Steps objects
 //     */
 //    public function findByExampleField($value): array
 //    {
@@ -36,7 +36,7 @@ class RecipePictureRepository extends ServiceEntityRepository
 //        ;
 //    }
 
-//    public function findOneBySomeField($value): ?RecipePicture
+//    public function findOneBySomeField($value): ?Steps
 //    {
 //        return $this->createQueryBuilder('s')
 //            ->andWhere('s.exampleField = :val')
