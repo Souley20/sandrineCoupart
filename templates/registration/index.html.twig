@@ -1,20 +1,60 @@
-{% extends 'base.html.twig' %}
+{% extends 'baseAdmin.html.twig' %}
 
-{% block title %}Hello RegistrationController!{% endblock %}
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('css/user/userIndex.css') }}">
+{% endblock %}
 
-{% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
-
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
-
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code>C:/wamp64/www/sandrineCoupart/src/Controller/RegistrationController.php</code></li>
-        <li>Your template at <code>C:/wamp64/www/sandrineCoupart/templates/registration/index.html.twig</code></li>
-    </ul>
-</div>
+{% block header %}
+<a class="btn-new" href="{{ path('app_register') }}">Nouveau utilisateur</a>  
+{% endblock %}
+{% block main %}
+    <h1>Liste utilisateur</h1>
+    <div class="user">
+    {% for user in users %}
+    <div class="user-affichage">
+        <div class="user-affichage__items">
+            <h2>Email</h2>
+            <div class="user-affichage__items__email">
+                <p>{{ user.email }}</p>
+            </div>
+        </div>
+        <div class="user-affichage__items">
+            <h2>Allergis</h2>
+            <div class="user-affichage__items__allergens">
+            {% for allergen in user.allergens %}
+                <p>{{ allergen.name }}</p>
+            {% else %}
+                <p>pas d'allergi</p>
+            {% endfor %}
+            </div>
+        </div>
+        <div class="user-affichage__items">
+            <h2>Diet</h2>
+            <div class="user-affichage__items__diet">
+            {% for diet in user.diet %}
+                <p>{{ diet.name }}</p>
+            {% else %}
+                <p>pas de diet</p>
+            {% endfor %}
+            </div>
+        </div>
+        <div class="user-affichage__items__btn-delete">
+            {{ include('registration/_delete_form.html.twig') }}
+        </div>
+    </div>
+    {% else %}
+    <div>
+        <span>Aucun utilisateur chargé</span>
+    </div>
+    {% endfor %}
+    </div>
+{% endblock %}
+{% block footer %}
+    {% for page in 1..totalPages %}
+        {% if page == currentPage %}
+            <span class="page-courante">{{ page }}</span>
+        {% else %}
+            <a class="page-non-courante" href="{{ path('app_register_index', {'page': page}) }}">{{ page }}</a>
+        {% endif %}
+    {% endfor %}
 {% endblock %}
